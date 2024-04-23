@@ -9,6 +9,10 @@ RUN echo "ru_RU.UTF-8 UTF-8" > /etc/locale.gen && \
   /usr/sbin/update-locale LANG=ru_RU.UTF-8
 ENV LC_ALL ru_RU.UTF-8
 
+# установка переменных окружения
+ENV VIP_PRICE 2000
+ENV FAN_PRICE 1000
+
 ENV APP_PATH=/usr/src
 WORKDIR $APP_PATH
 

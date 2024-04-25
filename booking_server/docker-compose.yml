@@ -1,0 +1,42 @@
+version: '3'
+services:
+  booking_server:
+    build: .
+    command: rails s -b 0.0.0.0
+    volumes:
+      - .:/usr/src
+    ports:
+      - 3000:3000
+    depends_on:
+      - db
+      - redis
+    environment:
+      REDIS_URL: redis://redis:6379/0
+  
+  db:
+    image: postgres:11.5
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    volumes:
+      - postgres:/var/lib/postgresql/data
+
+  sidekiq:
+    build: .
+    volumes:
+      - .:/usr/src
+    depends_on:
+      - db
+      - redis
+    command: sidekiq
+    environment:
+      REDIS_URL: redis://redis:6379/0
+
+  redis:
+    image: redis:alpine
+    volumes:
+      - redis:/data
+
+volumes:
+  postgres:
+  redis:

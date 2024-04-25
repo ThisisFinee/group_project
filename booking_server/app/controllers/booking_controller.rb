@@ -1,7 +1,7 @@
 require 'securerandom'
 require "net/http"
 require "uri"
-
+require "typhoeus"
 class BookingController < ApplicationController
     skip_before_action :verify_authenticity_token, only: [:create, :cancel]
     def create
@@ -19,27 +19,30 @@ class BookingController < ApplicationController
         check_tickets_availability(params[:category], params[:date])
     end
 
-    def check_tickets_availability(categoty, date)
+    def check_tickets_availability(category, date)
         # Получение параметров запроса для билетов
         # category = params[:category]
         # date = params[:date]
         status = "free"
-    
+        uri = 'http://ticket_server:3000/tickets/free?'
         # Выполнение GET-запроса сервису билетов для проверки доступности билетов
-        # response = Net::HTTP.get("http://your_app_url/tickets/free?category=#{category}&date=#{date}&status=#{status}")\
-        # response_hash = JSON.parse(response)
-        
+        response = Typhoeus.get(uri + "category=#{category}&event_date=#{date}")
+        puts response.body
+        if response.code == 200
+            response_hash = JSON.parse(response.body)
+            # Обработка данных из response_hash
         # Временная заглушка
-        response_hash = {
-            'ticket_number': 123,
-            "price": 100,
-            "status": 200
-        }
+
+        # response_hash = {
+        #     'ticket_number': 123,
+        #     "price": 100,
+        #     "status": 200
+        # }
         # Обработка ответа
-        if response_hash[:status] == 200
+
             # Если запрос выполнен успешно, получаем данные о свободных билетах из ответа
             
-            # Сучайная генерация 128 битного числа
+        # Сучайная генерация 128 битного числа
             booking_number = SecureRandom.random_number(1_000_000_000)
             status = 'booking'
             price = response_hash[:price]
@@ -60,7 +63,7 @@ class BookingController < ApplicationController
         
             render json: { status: 200, booking_number: booking_number, price: price}, status: :ok
         else
-          render json: { error: "Error checking ticket availability" }, status: :unprocessable_entity
+            render json: { error: "Error checking ticket availability" }, status: :unprocessable_entity
         end
     end
 

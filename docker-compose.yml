@@ -1,0 +1,50 @@
+version: '3'
+services:
+  booking_server:
+    build: ./booking_server
+    command: rails s -b 0.0.0.0
+    volumes:
+      - ./booking_server:/usr/src
+    ports:
+      - 3000:3000
+    depends_on:
+      - booking_db
+      - booking_redis
+    environment:
+      REDIS_URL: redis://booking_redis:6379/0
+  
+  ticket_server:
+    build: ./ticket_server
+    command: rails s -b 0.0.0.0
+    volumes:
+      - ./ticket_server:/usr/src
+    ports:
+      - 3001:3000  # Порт 3001 для второго приложения
+    depends_on:
+      - ticket_db
+  
+  booking_db:
+    image: postgres:11.5
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    volumes:
+      - booking_postgres:/var/lib/postgresql/data
+
+  ticket_db:
+    image: postgres:11.5
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    volumes:
+      - ticket_postgres:/var/lib/postgresql/data
+
+  booking_redis:
+    image: redis:alpine
+    volumes:
+      - booking_redis:/data
+
+volumes:
+  booking_postgres:
+  ticket_postgres:
+  booking_redis:

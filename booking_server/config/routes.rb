@@ -1,11 +1,20 @@
 Rails.application.routes.draw do
   mount Sidekiq::Web => '/sidekiq'
   
+  # get '/booking/show', to: 'booking#show'
+
+  # post '/booking', to: 'booking#create'
+  
+  # post '/booking/check_tickets_availability', to: 'booking#check_tickets_availability'
+
+  # delete '/booking/cancel', to: 'booking#cancel'
+
   get '/booking/show', to: 'booking#show'
 
-  post '/booking', to: 'booking#create'
+  get '/booking', to: 'booking#create'
   
-  post '/booking/check_tickets_availability', to: 'booking#check_tickets_availability'
+  get '/booking/check_tickets_availability', to: 'booking#check_tickets_availability'
 
-  delete '/booking/cancel', to: 'booking#cancel'
+  get '/booking/cancel', to: 'booking#cancel'
+  
 end

@@ -17,7 +17,7 @@ class TicketsController < ApplicationController
     render json: response, status: :ok
 end
 
- # GET /tickets/block?ticket_number=1&document_number=123456
+ # PUT /tickets/block?ticket_number=1&document_number=123456
   def block
     #get user and check document and status sold
     block, message = TicketsService.check_block_conditions(@ticket.ticket_number, @ticket.status, params[:document_number])

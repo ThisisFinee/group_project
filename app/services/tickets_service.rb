@@ -26,6 +26,7 @@ class TicketsService
 
     def self.check_block_conditions(ticket_number, ticket_status, document_number)
         user_document = get_user_document(ticket_number)
+        return false, 'Ошибка доступа к внешнему серверу' unless user_document
         # p "#{user_document} #{user_document.class} #{document_number} #{document_number.class}"
         return false, 'Номер документа не совпадает' if document_number != user_document
         return false, 'Билет не куплен' if ticket_status != 'purchased'
@@ -41,6 +42,8 @@ class TicketsService
         # END
 
         # response = Net::HTTP.get(URI(url))
+        # return false if response.code != 200
+        
         response = JSON.parse(response) #.body
         response["document_number"]
     end

@@ -1,4 +1,3 @@
-
 # Group Project
 Авторы: Анатолий Иванашко, Екатерина Жакова, Сергей Романов, Федотов Илья
 
@@ -46,7 +45,7 @@ curl -X POST "http://localhost:3000/booking?category=vip&date=2024-01-01"
 ```
 
 Параметры: 
-+ `categoty` - `vip` или `fan`
++ `category` - `vip` или `fan`
 + `date` - `2024-01-01` (в сидах при создании билетов создается эта дата) 
 
 Возвращает `booking_number, price`

@@ -2,6 +2,8 @@ class TicketsController < ApplicationController
   STATUS = %w[ free purchased booking block ]
   CATEGORY = %w[ vip fan ]
 
+  skip_before_action :verify_authenticity_token
+  
   before_action :validate_ticket_number, only: %i[ show block update ]
   before_action :validate_status, only: :update
   before_action :validate_category, only: :free

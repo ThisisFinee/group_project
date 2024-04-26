@@ -23,33 +23,31 @@ class TicketsService
       cost += cost * COST_INCREASE
       sold_persent -= SALE_PERCENT
     end
+    
     cost.to_i
-    end
+  end
 
-    def self.check_block_conditions(ticket_number, ticket_status, document_number)
-        user_document = get_user_document(ticket_number)
-        return false, 'Ошибка доступа к внешнему серверу' unless user_document
-        # p "#{user_document} #{user_document.class} #{document_number} #{document_number.class}"
-        return false, 'Номер документа не совпадает' if document_number != user_document
-        return false, 'Билет не куплен' if ticket_status != 'purchased'
-        return true, 'ok'
-    end
+  def self.check_block_conditions(ticket_number, ticket_status, document_number)
+    user_document = get_user_document(ticket_number)
+    return false, 'External service access error' unless user_document
+    # p "#{user_document} #{user_document.class} #{document_number} #{document_number.class}"
+    return false, 'Document number does not match' if document_number != user_document
+    return false, 'Ticket has not been purchased' if ticket_status != 'purchased'
+    return true, 'ok'
+  end
 
-    private
+  private
 
-    def self.get_user_document(ticket_number)
-        url = USER_SERVER_URL + "ticket_number=#{ticket_number}"
-        # FOR DEVELOPMENT
-        # response = { "document_number": "123456" }.to_json
-        # END
+  def self.get_user_document(ticket_number)
+    url = USER_SERVER_URL + "ticket_number=#{ticket_number}"
+    # FOR DEVELOPMENT
+    # response = { "document_number": "123456" }.to_json
+    # END
 
-        response = Typhoeus.get(url)
-        return false if response.code != 200
-        
-        response = JSON.parse(response.body)
-        response["document_number"]
-    end
-
-
-
+    response = Typhoeus.get(url)
+    return false if response.code != 200
+    
+    response = JSON.parse(response.body)
+    response["document_number"]
+  end
 end

@@ -30,7 +30,7 @@ end
     
     #update ticket with status = block
     if @ticket.update(status: 'block')
-      render json: 'Статус обновлен', status: :ok
+      render json: 'Status updated', status: :ok
     else
       render json: @ticket.errors, status: :not_acceptable 
     end
@@ -43,7 +43,7 @@ end
     free_tickets_count = Ticket.all.where("category = ? and event_date = ? and status = ?", params[:category], event_date, 'free').count
 
     if free_tickets_count.zero?
-      render json: 'Нет доступных билетов на эту дату и категорию', status: :not_found
+      render json: 'No available tickets', status: :not_found
     else
       ticket_number = Ticket.all.where("category = ? and event_date = ? and status = ?", params[:category], event_date, 'free').first.ticket_number
       price = TicketsService.calculate_ticket_cost(free_tickets_count, params[:category])
@@ -55,7 +55,7 @@ end
   # PUT /tickets/status?ticket_number=1&status=free
   def update
       if @ticket.update(status: params[:status])
-        render json: 'Статус обновлен', status: :ok
+        render json: 'Status updated', status: :ok
       else
         render json: @ticket.errors, status: :not_acceptable 
       end
@@ -67,7 +67,7 @@ end
     def set_ticket
       @ticket = Ticket.find_by(ticket_number: params[:ticket_number].to_i)
       unless @ticket.present?
-        render json: 'Билета с таким номером не существует', status: :not_found
+        render json: 'Ticket with such number does not exist', status: :not_found
       end
     end
 
@@ -80,18 +80,18 @@ end
       number = Integer(params[:ticket_number])
       number.positive?
     rescue ArgumentError, TypeError
-      render json: 'Недопустимый номер билета', status: :not_acceptable
+      render json: 'Invalid ticket number', status: :not_acceptable
     end
 
     def validate_status
       unless STATUS.include?(params[:status])
-        render json: 'Недопустимый статус билета', status: :not_acceptable
+        render json: 'Invalid ticket status', status: :not_acceptable
       end
     end
 
     def validate_category
       unless CATEGORY.include?(params[:category])
-        render json: 'Недопустимая категория билета', status: :not_acceptable
+        render json: 'Invalid ticket category', status: :not_acceptable
       end
     end
 end

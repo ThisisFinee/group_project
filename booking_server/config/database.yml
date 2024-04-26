@@ -1,0 +1,19 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  username: user
+  password: password
+  host: booking_db
+  port: 5432
+
+development:
+  <<: *default
+  database: booking_development
+
+test:
+  <<: *default
+  database: booking_test
+
+production:
+  <<: *default
+  database: booking_production

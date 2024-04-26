@@ -1,0 +1,19 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  username: user
+  password: password
+  host: ticket_db
+  port: 5432
+
+development:
+  <<: *default
+  database: ticket_development
+
+test:
+  <<: *default
+  database: ticket_test
+
+production:
+  <<: *default
+  database: ticket_production

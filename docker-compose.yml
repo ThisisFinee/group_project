@@ -13,6 +13,16 @@ services:
     environment:
       REDIS_URL: redis://booking_redis:6379/0
   
+  sidekiq:
+    build: ./booking_server
+    depends_on:
+      - booking_db
+      - booking_redis
+    command: sidekiq
+    environment:
+      REDIS_URL: redis://booking_redis:6379/0
+
+      
   ticket_server:
     build: ./ticket_server
     command: rails s -b 0.0.0.0
@@ -43,7 +53,6 @@ services:
     image: redis:alpine
     volumes:
       - booking_redis:/data
-
 volumes:
   booking_postgres:
   ticket_postgres:

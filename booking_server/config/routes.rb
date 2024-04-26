@@ -16,5 +16,7 @@ Rails.application.routes.draw do
   get '/booking/check_tickets_availability', to: 'booking#check_tickets_availability'
 
   get '/booking/cancel', to: 'booking#cancel'
+
+  delete '/booking', to: 'booking#delete'
   
 end

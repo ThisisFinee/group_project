@@ -1,9 +1,10 @@
+require 'typhoeus'
 class TicketsService
     VIP_TICKET_COUNT = 50
     FAN_TICKET_COUNT = 150
     COST_INCREASE = 0.1
     SALE_PERCENT = 0.1
-    USER_SERVER_URL = 'http://user_server:2000/users?'
+    USER_SERVER_URL = 'http://user_server:3000/users/document?'
 
     def self.calculate_ticket_cost(free_count, category)
         total_count = FAN_TICKET_COUNT
@@ -38,13 +39,13 @@ class TicketsService
     def self.get_user_document(ticket_number)
         url = USER_SERVER_URL + "ticket_number=#{ticket_number}"
         # FOR DEVELOPMENT
-        response = { "document_number": "123456" }.to_json
+        # response = { "document_number": "123456" }.to_json
         # END
 
-        # response = Net::HTTP.get(URI(url))
-        # return false if response.code != 200
+        response = Typhoeus.get(url)
+        return false if response.code != 200
         
-        response = JSON.parse(response) #.body
+        response = JSON.parse(response.body)
         response["document_number"]
     end
 

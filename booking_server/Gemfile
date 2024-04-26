@@ -47,3 +47,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'sidekiq', require: ['sidekiq', 'sidekiq/web']
 gem 'redis'
 gem 'typhoeus'
+gem 'rack-cors'

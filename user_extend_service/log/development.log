@@ -3394,3 +3394,315 @@ Processing by UsersController#find_log as HTML
 Completed 200 OK in 28ms (Views: 0.2ms | ActiveRecord: 7.1ms | Allocations: 8032)
 
 
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+Started POST "/users?ticket_number=123" for 172.25.0.1 at 2024-04-26 12:42:12 +0000
+Cannot render console from 172.25.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  
+ActionController::RoutingError (No route matches [POST] "/users"):
+  
+Started POST "/users?ticket_number=123" for 172.25.0.1 at 2024-04-26 12:45:02 +0000
+Cannot render console from 172.25.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by UsersController#create as */*
+  Parameters: {"ticket_number"=>"123"}
+Can't verify CSRF token authenticity.
+Completed 422 Unprocessable Entity in 1ms (Allocations: 462)
+
+
+  
+ActionController::InvalidAuthenticityToken (ActionController::InvalidAuthenticityToken):
+  
+actionpack (6.1.7.7) lib/action_controller/metal/request_forgery_protection.rb:211:in `handle_unverified_request'
+actionpack (6.1.7.7) lib/action_controller/metal/request_forgery_protection.rb:243:in `handle_unverified_request'
+actionpack (6.1.7.7) lib/action_controller/metal/request_forgery_protection.rb:238:in `verify_authenticity_token'
+activesupport (6.1.7.7) lib/active_support/callbacks.rb:427:in `block in make_lambda'
+activesupport (6.1.7.7) lib/active_support/callbacks.rb:198:in `block (2 levels) in halting'
+actionpack (6.1.7.7) lib/abstract_controller/callbacks.rb:34:in `block (2 levels) in <module:Callbacks>'
+activesupport (6.1.7.7) lib/active_support/callbacks.rb:199:in `block in halting'
+activesupport (6.1.7.7) lib/active_support/callbacks.rb:512:in `block in invoke_before'
+activesupport (6.1.7.7) lib/active_support/callbacks.rb:512:in `each'
+activesupport (6.1.7.7) lib/active_support/callbacks.rb:512:in `invoke_before'
+activesupport (6.1.7.7) lib/active_support/callbacks.rb:115:in `block in run_callbacks'
+activesupport (6.1.7.7) lib/active_support/callbacks.rb:137:in `run_callbacks'
+actionpack (6.1.7.7) lib/abstract_controller/callbacks.rb:41:in `process_action'
+actionpack (6.1.7.7) lib/action_controller/metal/rescue.rb:22:in `process_action'
+actionpack (6.1.7.7) lib/action_controller/metal/instrumentation.rb:34:in `block in process_action'
+activesupport (6.1.7.7) lib/active_support/notifications.rb:203:in `block in instrument'
+activesupport (6.1.7.7) lib/active_support/notifications/instrumenter.rb:24:in `instrument'
+activesupport (6.1.7.7) lib/active_support/notifications.rb:203:in `instrument'
+actionpack (6.1.7.7) lib/action_controller/metal/instrumentation.rb:33:in `process_action'
+actionpack (6.1.7.7) lib/action_controller/metal/params_wrapper.rb:249:in `process_action'
+activerecord (6.1.7.7) lib/active_record/railties/controller_runtime.rb:27:in `process_action'
+actionpack (6.1.7.7) lib/abstract_controller/base.rb:165:in `process'
+actionview (6.1.7.7) lib/action_view/rendering.rb:39:in `process'
+actionpack (6.1.7.7) lib/action_controller/metal.rb:190:in `dispatch'
+actionpack (6.1.7.7) lib/action_controller/metal.rb:254:in `dispatch'
+actionpack (6.1.7.7) lib/action_dispatch/routing/route_set.rb:50:in `dispatch'
+actionpack (6.1.7.7) lib/action_dispatch/routing/route_set.rb:33:in `serve'
+actionpack (6.1.7.7) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (6.1.7.7) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.1.7.7) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.1.7.7) lib/action_dispatch/routing/route_set.rb:842:in `call'
+rack (2.2.9) lib/rack/tempfile_reaper.rb:15:in `call'
+rack (2.2.9) lib/rack/etag.rb:27:in `call'
+rack (2.2.9) lib/rack/conditional_get.rb:40:in `call'
+rack (2.2.9) lib/rack/head.rb:12:in `call'
+actionpack (6.1.7.7) lib/action_dispatch/http/permissions_policy.rb:22:in `call'
+actionpack (6.1.7.7) lib/action_dispatch/http/content_security_policy.rb:19:in `call'
+rack (2.2.9) lib/rack/session/abstract/id.rb:266:in `context'
+rack (2.2.9) lib/rack/session/abstract/id.rb:260:in `call'
+actionpack (6.1.7.7) lib/action_dispatch/middleware/cookies.rb:697:in `call'
+activerecord (6.1.7.7) lib/active_record/migration.rb:601:in `call'
+actionpack (6.1.7.7) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.1.7.7) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (6.1.7.7) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.1.7.7) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.7.7) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (6.1.7.7) lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:19:in `block in call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.1.7.7) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.1.7.7) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.1.7.7) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.1.7.7) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (6.1.7.7) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (6.1.7.7) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (6.1.7.7) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.4.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.1.7.7) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.1.7.7) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.9) lib/rack/method_override.rb:24:in `call'
+rack (2.2.9) lib/rack/runtime.rb:22:in `call'
+activesupport (6.1.7.7) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.1.7.7) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.7.7) lib/action_dispatch/middleware/static.rb:24:in `call'
+rack (2.2.9) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.1.7.7) lib/action_dispatch/middleware/host_authorization.rb:148:in `call'
+rack-mini-profiler (2.3.4) lib/mini_profiler/profiler.rb:393:in `call'
+railties (6.1.7.7) lib/rails/engine.rb:539:in `call'
+puma (5.6.8) lib/puma/configuration.rb:252:in `call'
+puma (5.6.8) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.6.8) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.6.8) lib/puma/request.rb:76:in `handle_request'
+puma (5.6.8) lib/puma/server.rb:443:in `process_client'
+puma (5.6.8) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+Started POST "/users?ticket_number=123" for 172.25.0.1 at 2024-04-26 12:47:27 +0000
+Cannot render console from 172.25.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by UsersController#create as */*
+  Parameters: {"ticket_number"=>"123"}
+Completed 400 Bad Request in 1ms (Allocations: 696)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: user):
+  
+app/controllers/users_controller.rb:41:in `user_params'
+app/controllers/users_controller.rb:29:in `create'
+Started POST "/users?ticket_number=123&name=LOr&document_number=13233424&document_type=passport" for 172.25.0.1 at 2024-04-26 12:48:18 +0000
+Cannot render console from 172.25.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by UsersController#create as */*
+  Parameters: {"ticket_number"=>"123", "name"=>"LOr", "document_number"=>"13233424", "document_type"=>"passport"}
+Completed 400 Bad Request in 1ms (Allocations: 460)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: user):
+  
+app/controllers/users_controller.rb:41:in `user_params'
+app/controllers/users_controller.rb:29:in `create'
+Started POST "/users?ticket_number=123&name=LOr&document_number=13233424&document_type=passport" for 172.25.0.1 at 2024-04-26 12:48:50 +0000
+Cannot render console from 172.25.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by UsersController#create as */*
+  Parameters: {"ticket_number"=>"123", "name"=>"LOr", "document_number"=>"13233424", "document_type"=>"passport"}
+Completed 400 Bad Request in 0ms (Allocations: 459)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: user):
+  
+app/controllers/users_controller.rb:41:in `user_params'
+app/controllers/users_controller.rb:29:in `create'
+Started POST "/users?ticket_number=123&name=LOr&age=20&document_number=13233424&document_type=passport" for 172.25.0.1 at 2024-04-26 12:50:42 +0000
+Cannot render console from 172.25.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by UsersController#create as */*
+  Parameters: {"ticket_number"=>"123", "name"=>"LOr", "age"=>"20", "document_number"=>"13233424", "document_type"=>"passport"}
+Completed 400 Bad Request in 1ms (Allocations: 458)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: user):
+  
+app/controllers/users_controller.rb:41:in `user_params'
+app/controllers/users_controller.rb:29:in `create'
+Started POST "/users?ticket_number=123&name=LOr&age=20&document_number=13233424&document_type=passport" for 172.25.0.1 at 2024-04-26 12:53:23 +0000
+Cannot render console from 172.25.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by UsersController#create as */*
+  Parameters: {"ticket_number"=>"123", "name"=>"LOr", "age"=>"20", "document_number"=>"13233424", "document_type"=>"passport"}
+Completed 400 Bad Request in 1ms (Allocations: 658)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: user):
+  
+app/controllers/users_controller.rb:41:in `user_params'
+app/controllers/users_controller.rb:29:in `create'
+Started POST "/users?ticket_number=123&name=LOr&age=20&document_number=13233424&document_type=passport" for 172.25.0.1 at 2024-04-26 12:53:46 +0000
+Cannot render console from 172.25.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by UsersController#create as */*
+  Parameters: {"ticket_number"=>"123", "name"=>"LOr", "age"=>"20", "document_number"=>"13233424", "document_type"=>"passport"}
+Completed 500 Internal Server Error in 28ms (ActiveRecord: 13.0ms | Allocations: 8520)
+
+
+  
+ActiveModel::ForbiddenAttributesError (ActiveModel::ForbiddenAttributesError):
+  
+app/controllers/users_controller.rb:29:in `create'
+Started POST "/users?ticket_number=123&name=LOr&age=20&document_number=13233424&document_type=passport" for 172.25.0.1 at 2024-04-26 12:54:31 +0000
+Cannot render console from 172.25.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by UsersController#create as */*
+  Parameters: {"ticket_number"=>"123", "name"=>"LOr", "age"=>"20", "document_number"=>"13233424", "document_type"=>"passport"}
+Completed 500 Internal Server Error in 15ms (ActiveRecord: 6.8ms | Allocations: 5574)
+
+
+  
+ActiveModel::ForbiddenAttributesError (ActiveModel::ForbiddenAttributesError):
+  
+app/controllers/users_controller.rb:30:in `create'
+Started POST "/users?ticket_number=123&name=LOr&age=20&document_number=13233424&document_type=passport" for 172.25.0.1 at 2024-04-26 12:57:35 +0000
+Cannot render console from 172.25.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by UsersController#create as */*
+  Parameters: {"ticket_number"=>"123", "name"=>"LOr", "age"=>"20", "document_number"=>"13233424", "document_type"=>"passport"}
+Completed 500 Internal Server Error in 12ms (ActiveRecord: 4.9ms | Allocations: 5400)
+
+
+  
+ActiveModel::ForbiddenAttributesError (ActiveModel::ForbiddenAttributesError):
+  
+app/controllers/users_controller.rb:30:in `create'
+Started POST "/users?ticket_number=123&name=LOr&age=20&document_number=13233424&document_type=passport" for 172.25.0.1 at 2024-04-26 12:59:14 +0000
+Cannot render console from 172.25.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by UsersController#create as */*
+  Parameters: {"ticket_number"=>"123", "name"=>"LOr", "age"=>"20", "document_number"=>"13233424", "document_type"=>"passport"}
+Completed 400 Bad Request in 0ms (ActiveRecord: 0.0ms | Allocations: 444)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: user):
+  
+app/controllers/users_controller.rb:42:in `user_params'
+app/controllers/users_controller.rb:29:in `create'
+Started POST "/users?ticket_number=123&name=LOr&age=20&document_number=13233424&document_type=passport" for 172.25.0.1 at 2024-04-26 13:00:06 +0000
+Cannot render console from 172.25.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by UsersController#create as */*
+  Parameters: {"ticket_number"=>"123", "name"=>"LOr", "age"=>"20", "document_number"=>"13233424", "document_type"=>"passport"}
+Completed 400 Bad Request in 0ms (ActiveRecord: 0.0ms | Allocations: 444)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: user):
+  
+app/controllers/users_controller.rb:42:in `user_params'
+app/controllers/users_controller.rb:29:in `create'
+Started POST "/users?ticket_number=123&name=LOr&age=20&document_number=13233424&document_type=passport" for 172.25.0.1 at 2024-04-26 13:00:24 +0000
+Cannot render console from 172.25.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by UsersController#create as */*
+  Parameters: {"ticket_number"=>"123", "name"=>"LOr", "age"=>"20", "document_number"=>"13233424", "document_type"=>"passport"}
+Completed 400 Bad Request in 0ms (ActiveRecord: 0.0ms | Allocations: 494)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: user):
+  
+app/controllers/users_controller.rb:42:in `user_params'
+app/controllers/users_controller.rb:29:in `create'
+Started POST "/users?ticket_number=123&name=LOr&age=20&document_number=13233424&document_type=passport" for 172.25.0.1 at 2024-04-26 13:00:46 +0000
+Cannot render console from 172.25.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by UsersController#create as */*
+  Parameters: {"ticket_number"=>"123", "name"=>"LOr", "age"=>"20", "document_number"=>"13233424", "document_type"=>"passport"}
+Completed 400 Bad Request in 0ms (ActiveRecord: 0.0ms | Allocations: 448)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: user):
+  
+app/controllers/users_controller.rb:43:in `user_params'
+app/controllers/users_controller.rb:29:in `create'
+Started POST "/users?ticket_number=123&name=LOr&age=20&document_number=13233424&document_type=passport" for 172.25.0.1 at 2024-04-26 13:06:18 +0000
+Cannot render console from 172.25.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by UsersController#create as */*
+  Parameters: {"ticket_number"=>"123", "name"=>"LOr", "age"=>"20", "document_number"=>"13233424", "document_type"=>"passport"}
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:31:in `create'
+  [1m[36mUser Create (40.5ms)[0m  [1m[32mINSERT INTO "users" ("ticket_number", "name", "age", "document_number", "document_type", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["ticket_number", 123], ["name", "LOr"], ["age", 20], ["document_number", "13233424"], ["document_type", "passport"], ["created_at", "2024-04-26 13:06:18.221458"], ["updated_at", "2024-04-26 13:06:18.221458"]]
+  ↳ app/controllers/users_controller.rb:31:in `create'
+  [1m[36mTRANSACTION (24.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:31:in `create'
+No template found for UsersController#create, rendering head :no_content
+Completed 204 No Content in 103ms (ActiveRecord: 81.7ms | Allocations: 12980)
+
+
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+Started POST "/users?ticket_number=12345&name=IOP&age=20&document_number=13033424&document_type=passport" for 172.25.0.1 at 2024-04-26 13:10:03 +0000
+Cannot render console from 172.25.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  
+SyntaxError (/usr/src/app/controllers/users_controller.rb:31: syntax error, unexpected ',', expecting end
+    @user.save!, status: :ok
+               ^):
+  
+app/controllers/users_controller.rb:31: syntax error, unexpected ',', expecting end
+app/controllers/users_controller.rb:31: syntax error, unexpected ',', expecting end
+Started POST "/users?ticket_number=12345&name=IOP&age=20&document_number=13033424&document_type=passport" for 172.25.0.1 at 2024-04-26 13:10:52 +0000
+Cannot render console from 172.25.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  
+SyntaxError (/usr/src/app/controllers/users_controller.rb:32: syntax error, unexpected ':', expecting end
+    status: :ok
+          ^):
+  
+app/controllers/users_controller.rb:32: syntax error, unexpected ':', expecting end
+app/controllers/users_controller.rb:32: syntax error, unexpected ':', expecting end
+Started POST "/users?ticket_number=12345&name=IOP&age=20&document_number=13033424&document_type=passport" for 172.25.0.1 at 2024-04-26 13:11:12 +0000
+Cannot render console from 172.25.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  
+SyntaxError (/usr/src/app/controllers/users_controller.rb:32: syntax error, unexpected ':', expecting end
+    status: 200
+          ^):
+  
+app/controllers/users_controller.rb:32: syntax error, unexpected ':', expecting end
+app/controllers/users_controller.rb:32: syntax error, unexpected ':', expecting end
+Started POST "/users?ticket_number=12345&name=IOP&age=20&document_number=13033424&document_type=passport" for 172.25.0.1 at 2024-04-26 13:12:54 +0000
+Cannot render console from 172.25.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by UsersController#create as */*
+  Parameters: {"ticket_number"=>"12345", "name"=>"IOP", "age"=>"20", "document_number"=>"13033424", "document_type"=>"passport"}
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:31:in `create'
+  [1m[36mUser Create (1.0ms)[0m  [1m[32mINSERT INTO "users" ("ticket_number", "name", "age", "document_number", "document_type", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["ticket_number", 12345], ["name", "IOP"], ["age", 20], ["document_number", "13033424"], ["document_type", "passport"], ["created_at", "2024-04-26 13:12:54.365067"], ["updated_at", "2024-04-26 13:12:54.365067"]]
+  ↳ app/controllers/users_controller.rb:31:in `create'
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:31:in `create'
+Completed 500 Internal Server Error in 29ms (ActiveRecord: 7.9ms | Allocations: 7997)
+
+
+  
+ActionView::MissingTemplate (Missing template users/create, application/create with {:locale=>[:en], :formats=>[:html, :text, :js, :css, :ics, :csv, :vcf, :vtt, :png, :jpeg, :gif, :bmp, :tiff, :svg, :mpeg, :mp3, :ogg, :m4a, :webm, :mp4, :otf, :ttf, :woff, :woff2, :xml, :rss, :atom, :yaml, :multipart_form, :url_encoded_form, :json, :pdf, :zip, :gzip], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :jbuilder]}. Searched in:
+  * "/usr/src/app/views"
+  * "/usr/local/bundle/gems/actiontext-6.1.7.7/app/views"
+  * "/usr/local/bundle/gems/actionmailbox-6.1.7.7/app/views"
+):
+  
+app/controllers/users_controller.rb:32:in `create'
+Started POST "/users?ticket_number=12345&name=IOP&age=20&document_number=13033424&document_type=passport" for 172.25.0.1 at 2024-04-26 13:13:39 +0000
+Cannot render console from 172.25.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by UsersController#create as */*
+  Parameters: {"ticket_number"=>"12345", "name"=>"IOP", "age"=>"20", "document_number"=>"13033424", "document_type"=>"passport"}
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:31:in `create'
+  [1m[36mUser Create (0.8ms)[0m  [1m[32mINSERT INTO "users" ("ticket_number", "name", "age", "document_number", "document_type", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["ticket_number", 12345], ["name", "IOP"], ["age", 20], ["document_number", "13033424"], ["document_type", "passport"], ["created_at", "2024-04-26 13:13:39.364601"], ["updated_at", "2024-04-26 13:13:39.364601"]]
+  ↳ app/controllers/users_controller.rb:31:in `create'
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:31:in `create'
+No template found for UsersController#create, rendering head :no_content
+Completed 204 No Content in 18ms (ActiveRecord: 7.3ms | Allocations: 7281)
+
+
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]

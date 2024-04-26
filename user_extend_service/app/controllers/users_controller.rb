@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[ find find_block find_log ]
+  skip_before_action :verify_authenticity_token
 
   # GET /users or /users.json
   # def index
@@ -25,7 +26,8 @@ class UsersController < ApplicationController
 
   # POST /users or /users.json
   def create
-    @user = User.new(user_params)
+    par = {ticket_number: params['ticket_number'], name: params['name'], age: params['age'], document_number: params['document_number'], document_type: params['document_type']}
+    @user = User.new(par)
     @user.save!
   end
 

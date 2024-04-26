@@ -1,0 +1,7 @@
+# Игнорировать все файлы
+user_extend_service/log
+*.log
+user_extend_service/tmp
+# Не игнорировать файлы с расширениями .rb и .yml
+!*.rb
+!*.yml

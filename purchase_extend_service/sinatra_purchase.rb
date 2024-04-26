@@ -14,7 +14,9 @@ get '/' do
   'Hello, World!'
 end
 
-post 'purchase' do
+get '/purchase' do
   purchase = PurchaseService.new(params)
-  purchase.call
+  result = purchase.call
+  content_type :json
+  result.to_json
 end

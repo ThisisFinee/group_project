@@ -62,7 +62,7 @@ class BookingController < ApplicationController
     def change_ticket_status(ticket_number, status)
         uri = 'http://ticket_server:3000/tickets/status?'
         # Выполнение GET-запроса сервису билетов для проверки доступности билетов
-        response = Typhoeus.get(uri + "ticket_number=#{ticket_number}&status=#{status}")
+        response = Typhoeus.put(uri + "ticket_number=#{ticket_number}&status=#{status}")
         if response.code != 200
             false
         end

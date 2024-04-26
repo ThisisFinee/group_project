@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 2024_04_25_165211) do
   enable_extension "plpgsql"
 
   create_table "in_out_events", force: :cascade do |t|
+    t.integer "ticket_number"
     t.string "user_name"
     t.datetime "date_time"
     t.string "user_action"

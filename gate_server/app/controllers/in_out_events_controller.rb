@@ -1,5 +1,6 @@
 class InOutEventsController < ApplicationController
   before_action :set_in_out_event, only: %i[ show edit update destroy ]
+  skip_before_action :verify_authenticity_token
 
   # GET /in_out_events or /in_out_events.json
   def index
@@ -7,6 +8,8 @@ class InOutEventsController < ApplicationController
 
     params.keys.each do |key|
       case key
+      when 'ticket_number'
+        @in_out_events = @in_out_events.where(ticket_number: params[:ticket_number])
       when 'status'
         @in_out_events = @in_out_events.where(status: params[:status])
       when 'date_time'
@@ -79,6 +82,6 @@ class InOutEventsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def in_out_event_params
-      params.require(:in_out_event).permit(:user_name, :date_time, :user_action, :status)
+      params.require(:in_out_event).permit(:ticket_number, :user_name, :date_time, :user_action, :status)
     end
 end

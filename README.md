@@ -1,38 +1,98 @@
-# group project
+# Group Project
+Авторы: Анатолий Иванашко, Екатерина Жакова, Сергей Романов, Федотов Илья
 
-version: '3'
-services:
-  user_server:
-    build: user_extend_service
-    command: rails s -b 0.0.0.0
-    volumes:
-      - ./user_extend_service:/usr/src
-    ports:
-      - 3000:3000
-    depends_on:
-      - db
-  db:
-    image: postgres:11.5
-    environment:
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: password
-    volumes:
-      - postgres:/var/lib/postgresql/data
-  purchase_server:
-    build: purchase_extend_service/
-    volumes:
-      - ./purchase_extend_service:/usr/src
-    ports:
-      - "3002:3000"
-    environment:
-      - USER_FIND_SERVICE_LINK=http://user_server:3000/find?
-      - USER_SERVICE_LINK=http://user_server:3000/users?
-      - BOOKING_SERVICE_LINK=http://booking_server:3000/booking/show?
-      - SIDEKIQ_SERVICE_LINK=http://booking_server:3000/booking/cancel?
-      - TICKET_STATUS_SERVICE_LINK=http://ticket_server:3000/tickets/status?
-    command: ruby sinatra_purchase.rb
+## Подготовка к работе: 
+1. Клонировать репозиторий:
+git clone git@git-intern.digitalleague.ru:zh_ekaterina/group-project.git
 
-volumes:
-  postgres:
+2. Перейти в папку group-project 
 
+3. Выполнить: 
+docker compose run --rm booking_server bash 
+rails db:create 
+rails db:migrate
 
+4. Выполнить:
+docker compose run --rm gate_server bash 
+rails db:create 
+rails db:migrate
+
+5. Выполнить:
+docker compose run --rm user_server bash 
+rails db:create 
+rails db:migrate
+
+6. Выполнить:
+docker compose run --rm ticket_server bash 
+rails db:create 
+rails db:migrate 
+rails db:seed
+ 
+## Работа приложения: 
+### Предоставленные параметры всего лишь пример!!! Ваши параметры могут отличаться(Кроме даты она всегда 2024-01-01)
+1. Бронирование:
+curl -X POST "http://localhost:3000/booking?category=vip&date=2024-01-01"
+
+Параметры: 
++ categoty - vip или fan
++ date - 2024-01-01 (в сидах при создании билетов создается эта дата) 
+
+Возвращает booking_number, price
+ 
+2. Отмена брони 
+curl -X DELETE "http://localhost:3000/booking/cancel?booking_number=<Вернувшийся номер брони при бронировании>"
+Возвращает статус 200
+ 
+3. Покупка
+curl -X GET "http://localhost:3002/purchase?booking_number=813934001&name=alex&age=20&document_number=441991&document_type=passport"
+Параметры:
++ booking_number - Вернувшийся номер брони при бронировании
++ name - имя пользователя 
++ age - возраст пользователя (integer) 
++ document_number - номер документа (string) 
++ document_type - тип документа: passport, driver_license или birth_certificate 
+Возвращает номер билета и цену внутри json 
+ 
+4. Вход/выход
+curl -X POST "http://localhost:3006/pass?ticket_number=158&category=vip&user_action=in&current_date=2024-01-01"
+Параметры:
++ ticket_number - номер билета, который возвращается после покупки 
++ category - (vip или fan) зона, куда пользователь хочет зайти (должна совпадать с зоной на билете) 
++ user_action - (in или out) хочет ли пользователь войти или выйти 
++ current_date - текущая дата, должна совпадать с датой на билете (2024-01-01 на всех билетах по умолчанию). 
+Возвращает: status: 200, result: true/false (true, если пользователь успешно совершил действие, false, если не успешно) 
+ 
+5. Вывод журнала входа/выхода
+curl -X GET "http://localhost:3006/in_out_events?ticket_number=123&status=true&user_name=Ivan&user_action=in&date_time=2024-01-01"
+Основной запрос (без фильтрации): curl -X GET "http://localhost:3006/in_out_events
+
+Остальные параметры указываются при желании фильтровать по одному или нескольким полям.
+
+Параметры:
++ ticket_number - номер билета 
++ status - (true или false) успешно ли вошел/вышел пользователь 
++ user_name - имя пользователя 
++ user_action - (in или out) какое действие совершает пользователь (вход или выход) 
++ date_time - дата мероприятия 
+Возвращает массив записей из бд 
+ 
+6. Блокировка билета
+curl -X PUT "http://localhost:3001/tickets/block?ticket_number=158&document_number=441991"
+ 
+Параметры:
++ ticket_number - номер билета, который вернулся после покупки 
++ document_number - номер документа, указанный при покупке 
+Возвращает статус 200 и сообщение "Status updated"
+
+## Проверка баз данных в консоли:
+1. Таблица бронирования
+Booking.allBooking.find_by(booking_number: <номер бронирования>)
+
+2. Таблица билетов
+Ticket.allTicket.find_by(ticket_number: <номер билета>)
+
+3. Таблица пользователей
+User.allUser.find_by(ticket_number: <номер купленного билета>)
+
+4. Таблица журнала входа/выхода
+InOutEvent.all

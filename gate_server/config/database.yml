@@ -6,7 +6,7 @@
 #
 default: &default
   adapter: postgresql
-  host: db
+  host: gate_db
   user: user
   password: password
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %> 
@@ -14,12 +14,12 @@ default: &default
 
 development:
   <<: *default 
-  database: development
+  database: gate_development
 
 test:
   <<: *default
-  database: test
+  database: gate_test
 
 production:
   <<: *default
-  database: production
+  database: gate_production

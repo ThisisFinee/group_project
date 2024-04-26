@@ -1,9 +1,9 @@
 class GateController < ApplicationController
   skip_before_action :verify_authenticity_token
 
-  rescue_from Exception do |e|
-    render json: {status: 404, result: false}, status: :not_found
-  end
+  # rescue_from Exception do |e|
+    # render json: {status: 404, result: false}, status: :not_found
+  # end
 
   def pass
     @ticket_number = params[:ticket_number]

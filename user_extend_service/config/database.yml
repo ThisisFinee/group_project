@@ -1,7 +1,7 @@
 
 default: &default
   adapter: postgresql
-  host: db
+  host: users_db
   user: user
   password: password
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
@@ -9,15 +9,16 @@ default: &default
 
 development:
   <<: *default
-  database: development
+  database: users_development
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: test
+  database: users_test
 
 production:
   <<: *default
-  database: production
+  database: users_production
+

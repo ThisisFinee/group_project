@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[ find find_block find_log ]
+  before_action :set_user, only: %i[ find_block find_log ]
   skip_before_action :verify_authenticity_token
 
   # GET /users or /users.json
@@ -13,15 +13,16 @@ class UsersController < ApplicationController
   end
 
   def find
-    render json: @user
+    @user = User.find_by(document_number: params['document_number'])
+    render json: @user, status: 200
   end
 
   def find_block
-    render json: {'document_number'=>@user.document_number}
+    render json: {'document_number'=>@user.document_number}, status: 200
   end
 
   def find_log
-    render json: {'user_name'=>@user.name}
+    render json: {'user_name'=>@user.name}, status: 200
   end
 
   # POST /users or /users.json

@@ -26,6 +26,9 @@ module Src
     config.host_authorization = {
       exclude: ->(request) { request.host == 'ticket_server' }
     }
+    config.host_authorization = {
+      exclude: ->(request) { request.host == 'booking_server' }
+    }
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files

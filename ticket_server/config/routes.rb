@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
     get 'tickets/free'
 
-    get 'tickets/status', to: 'tickets#update'
+    put 'tickets/status', to: 'tickets#update'
 
     put 'tickets/block'
 

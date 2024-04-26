@@ -66,7 +66,8 @@ curl -X GET "http://localhost:3002/purchase?booking_number=813934001&name=alex&a
 + `name` - имя пользователя 
 + `age` - возраст пользователя (integer) 
 + `document_number` - номер документа (string) 
-+ `document_type` - тип документа: `passport`, `driver_license` или `birth_certificate` 
++ `document_type` - тип документа: `passport`, `driver_license` или `birth_certificate`
+
 Возвращает номер билета и цену внутри json 
  
 4. Вход/выход
@@ -78,6 +79,7 @@ curl -X POST "http://localhost:3006/pass?ticket_number=158&category=vip&user_act
 + `category` - (`vip` или `fan`) зона, куда пользователь хочет зайти (должна совпадать с зоной на билете) 
 + `user_action` - (`in` или `out`) хочет ли пользователь войти или выйти 
 + `current_date` - текущая дата, должна совпадать с датой на билете (`2024-01-01` на всех билетах по умолчанию). 
+
 Возвращает: `status: 200, result: true/false` (`true`, если пользователь успешно совершил действие, `false`, если не успешно) 
  
 5. Вывод журнала входа/выхода
@@ -103,17 +105,29 @@ curl -X PUT "http://localhost:3001/tickets/block?ticket_number=158&document_numb
 Параметры:
 + `ticket_number` - номер билета, который вернулся после покупки 
 + `document_number` - номер документа, указанный при покупке 
+
 Возвращает статус `200` и сообщение `"Status updated"`
 
 ## Проверка баз данных в консоли:
 1. Таблица бронирования
-`Booking.allBooking.find_by(booking_number: <номер бронирования>)`
+```
+Booking.all
+Booking.find_by(booking_number: <номер бронирования>)
+```
 
 2. Таблица билетов
-`Ticket.allTicket.find_by(ticket_number: <номер билета>)`
+```
+Ticket.all
+Ticket.find_by(ticket_number: <номер билета>)
+```
 
 3. Таблица пользователей
-`User.allUser.find_by(ticket_number: <номер купленного билета>)`
+```
+User.all
+User.find_by(ticket_number: <номер купленного билета>)
+```
 
 4. Таблица журнала входа/выхода
-`InOutEvent.all`
+```
+InOutEvent.all
+```

@@ -1,28 +1,29 @@
 require 'typhoeus'
+
 class TicketsService
-    VIP_TICKET_COUNT = 50
-    FAN_TICKET_COUNT = 150
-    COST_INCREASE = 0.1
-    SALE_PERCENT = 0.1
-    USER_SERVER_URL = 'http://user_server:3000/users/document?'
+  VIP_TICKET_COUNT = 50
+  FAN_TICKET_COUNT = 150
+  COST_INCREASE = 0.1
+  SALE_PERCENT = 0.1
+  USER_SERVER_URL = 'http://user_server:3000/users/document?'
 
-    def self.calculate_ticket_cost(free_count, category)
-        total_count = FAN_TICKET_COUNT
-        cost = ENV['FAN_PRICE'].to_i
+  def self.calculate_ticket_cost(free_count, category)
+    total_count = FAN_TICKET_COUNT
+    cost = ENV['FAN_PRICE'].to_i
 
-        if category == 'vip'
-            total_count = VIP_TICKET_COUNT
-            cost = ENV['VIP_PRICE'].to_i
-        end
+    if category == 'vip'
+      total_count = VIP_TICKET_COUNT
+      cost = ENV['VIP_PRICE'].to_i
+    end
 
-        sold_count = total_count - free_count
-        sold_persent = sold_count.to_f/total_count
+    sold_count = total_count - free_count
+    sold_persent = sold_count.to_f/total_count
 
-        while sold_persent > SALE_PERCENT do
-            cost += cost * COST_INCREASE
-            sold_persent -= SALE_PERCENT
-        end
-        cost.to_i
+    while sold_persent > SALE_PERCENT do
+      cost += cost * COST_INCREASE
+      sold_persent -= SALE_PERCENT
+    end
+    cost.to_i
     end
 
     def self.check_block_conditions(ticket_number, ticket_status, document_number)

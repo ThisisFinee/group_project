@@ -1,0 +1,2 @@
+class InOutEvent < ApplicationRecord
+end

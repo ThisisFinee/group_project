@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User name:</strong>
+  <%= @in_out_event.user_name %>
+</p>
+
+<p>
+  <strong>Date time:</strong>
+  <%= @in_out_event.date_time %>
+</p>
+
+<p>
+  <strong>User action:</strong>
+  <%= @in_out_event.user_action %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @in_out_event.status %>
+</p>
+
+<%= link_to 'Edit', edit_in_out_event_path(@in_out_event) %> |
+<%= link_to 'Back', in_out_events_path %>

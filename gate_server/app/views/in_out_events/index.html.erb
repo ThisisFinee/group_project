@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>In Out Events</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User name</th>
+      <th>Date time</th>
+      <th>User action</th>
+      <th>Status</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @in_out_events.each do |in_out_event| %>
+      <tr>
+        <td><%= in_out_event.user_name %></td>
+        <td><%= in_out_event.date_time %></td>
+        <td><%= in_out_event.user_action %></td>
+        <td><%= in_out_event.status %></td>
+        <td><%= link_to 'Show', in_out_event %></td>
+        <td><%= link_to 'Edit', edit_in_out_event_path(in_out_event) %></td>
+        <td><%= link_to 'Destroy', in_out_event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New In Out Event', new_in_out_event_path %>

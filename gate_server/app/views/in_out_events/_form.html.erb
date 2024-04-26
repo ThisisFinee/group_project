@@ -1,0 +1,37 @@
+<%= form_with(model: in_out_event) do |form| %>
+  <% if in_out_event.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(in_out_event.errors.count, "error") %> prohibited this in_out_event from being saved:</h2>
+
+      <ul>
+        <% in_out_event.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :user_name %>
+    <%= form.text_field :user_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :date_time %>
+    <%= form.datetime_select :date_time %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_action %>
+    <%= form.text_field :user_action %>
+  </div>
+
+  <div class="field">
+    <%= form.label :status %>
+    <%= form.check_box :status %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
